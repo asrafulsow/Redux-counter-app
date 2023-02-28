@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-const Counter = () => {
+const Counter = ({ count }) => {
     const [count, setCount] = useState(0);
 
     const increment = () => {
@@ -31,4 +32,16 @@ const Counter = () => {
     );
 };
 
-export default Counter;
+const mapStateToProps = (state) => {
+    return {
+        value: state.value
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        increment: dispatch()
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)
